@@ -12,6 +12,7 @@ PAAR = 15;
 HStart = 660;
 HEnd = HStart + 300;
 HFile = HStart-60;
+HFileOpt = HStart;
 Radius = 2000;
 
 %% WP1
@@ -62,9 +63,9 @@ Radius = 2000;
 
 [CTA, SlotsUsed] = computeCTA(Arrivals, Slots);
 
-[UnrecDelay] = ComputeUnrecoverableDelay(Arrivals, Slots, HFile, HStart);
+[UnrecDelay] = ComputeUnrecoverableDelay(Arrivals,Slots,HStart,HFileOpt);
 
-[Slots, AZA_flights, AZA_cancelled, NewAirD, NewGroundD, NewTotalD] = OrganizeCTA(Slots, CTA, HStart, HNoReg);
+[Slots, AZA_flights, AZA_cancelled, NewAirD, NewGroundD, NewTotalD] = OrganizeCTA(Slots, CTA, HStart, HNoReg, Controlled, Exempt);
 
 
 

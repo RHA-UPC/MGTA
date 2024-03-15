@@ -73,7 +73,7 @@ function [HNoReg, delay] = AggregateDemand(Arrivals,HStart,HEnd,PAAR,AAR)
     xlabel('Scheduled Arrival Time (minutes)');
     ylabel('Cumulative Sum of Planes');
     legend('Number of planes','Reduced planes','Normal Planes','HStart','HEnd','HNoReg');
-    print('AggregateDemand.png', '-dpng');
+    %print('AggregateDemand.png', '-dpng');
 
     %Calculates the area of the two functions
     b = integral(y1, HStart, HEnd);
