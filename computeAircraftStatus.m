@@ -20,27 +20,27 @@ Airline = Arrivals.airline_code;
 
 
 for i = 1:size(Arrivals)
-  % Find flights not affected by the GDP
-  if STA(i) <= Hstart || STA(i) >= HNoReg
-      NotAffected = [NotAffected; flight_number(i), STA(i), STD(i), Distances(i), International(i), Airline(i)];
-  
-  % Check for exemptions: radius, already flying and International
+    % Find flights not affected by the GDP
+    if STA(i) <= Hstart || STA(i) >= HNoReg
+        NotAffected = [NotAffected; flight_number(i), STA(i), STD(i), Distances(i), International(i), Airline(i)];
 
-  elseif STD(i) <= Hfile
-      ExemptFlying = [ExemptFlying; flight_number(i), STA(i), STD(i), Distances(i), International(i), Airline(i)];
-      Exempt = [Exempt; flight_number(i), STA(i), STD(i), Distances(i), International(i), Airline(i)];
+        % Check for exemptions: radius, already flying and International
 
-  elseif International(i) == 0
-      ExemptInternational = [ExemptInternational; flight_number(i), STA(i), STD(i), Distances(i), International(i), Airline(i)];
-      Exempt = [Exempt; flight_number(i), STA(i), STD(i), Distances(i), International(i), Airline(i)];
+    elseif STD(i) <= Hfile
+        ExemptFlying = [ExemptFlying; flight_number(i), STA(i), STD(i), Distances(i), International(i), Airline(i)];
+        Exempt = [Exempt; flight_number(i), STA(i), STD(i), Distances(i), International(i), Airline(i)];
 
-  elseif Distances(i) >= radius
-      ExemptRadius = [ExemptRadius; flight_number(i), STA(i), STD(i), Distances(i), International(i), Airline(i)];
-      Exempt = [Exempt; flight_number(i), STA(i), STD(i), Distances(i), International(i), Airline(i)];
+    elseif International(i) == 0
+        ExemptInternational = [ExemptInternational; flight_number(i), STA(i), STD(i), Distances(i), International(i), Airline(i)];
+        Exempt = [Exempt; flight_number(i), STA(i), STD(i), Distances(i), International(i), Airline(i)];
 
-  else
-      Controlled = [Controlled; flight_number(i), STA(i), STD(i), Distances(i), International(i), Airline(i)];
-  end
+    elseif Distances(i) >= radius
+        ExemptRadius = [ExemptRadius; flight_number(i), STA(i), STD(i), Distances(i), International(i), Airline(i)];
+        Exempt = [Exempt; flight_number(i), STA(i), STD(i), Distances(i), International(i), Airline(i)];
+
+    else
+        Controlled = [Controlled; flight_number(i), STA(i), STD(i), Distances(i), International(i), Airline(i)];
+    end
 
 end
 

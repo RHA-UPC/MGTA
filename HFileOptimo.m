@@ -4,7 +4,7 @@ function [HFileOpt] = HFileOptimo(Arrivals,Hstart,Hend,HNoReg,Hfile,PAAR,AAR,Rad
 %   Detailed explanation goes here
 TimeFile = 0:10:Hstart; % define the radius vector with a step of 100
 DelG = zeros(1, length(TimeFile));
-DelA = zeros(1, length(TimeFile)); 
+DelA = zeros(1, length(TimeFile));
 
 for i = 1:length(TimeFile)
     Hfile = Hstart-i;

@@ -6,7 +6,7 @@ lowest_delay = inf;
 
 rad = 250:100:5000; % define the radius vector with a step of 100
 DelG = zeros(1, length(rad));
-DelA = zeros(1, length(rad)); 
+DelA = zeros(1, length(rad));
 
 for i = 1:length(rad)
     [slots] = ComputeSlots(Hstart,Hend,HNoReg,PAAR,AAR);

@@ -1,8 +1,9 @@
 clc
 clear
 
-%Establecemos la variable del nombre de nuestro aeropuerto y la zona
-%horaria donde se encuentra
+%Establecemos la variable del nombre de nuestro aeropuerto, la zona
+%horaria donde se encuentra, la aerolinea de bandera y el retraso maximo
+%antes de cancelar
 
 name = 'LIRF';
 Time_zone = 'Europe/Rome';

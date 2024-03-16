@@ -1,7 +1,7 @@
 function [ARRIVAL] = Arrivals(name, Time_zone)
 %PROCESS Summary of this function goes here
 
-%Executes function given by the professor. 
+%Executes function given by the professor.
 flights_data = parse_allft("20160129.ALL_FT+");
 
 %Acces data about Aircrafts, Airlines and ECAC airports from an unique
@@ -40,7 +40,7 @@ for i = 1:height(ARRIVAL_sorted)
 end
 
 %Adds passengers in the flight multiplying capacity by median occupancy by
-%airline. 
+%airline.
 [~, idx1] = ismember(ARRIVAL_sorted.aircraft_type, aircraft_types.aircraft);
 
 ARRIVAL_sorted.available_seats = aircraft_types.pax(idx1);
@@ -77,7 +77,7 @@ ARRIVAL_sorted.departure_minute = zeros(size(ARRIVAL_sorted,1),1);
 for i = 1:size(ARRIVAL_sorted,1)
     % Get the scheduled departure time
     scheduled_departure = ARRIVAL_sorted.scheduled_departure(i);
-    
+
     % Check if the scheduled departure time is on the 28th day of the month
     if day(scheduled_departure) == 28
         % If the scheduled departure time is on the 28th day of the month, calculate the number of minutes until the end of the day

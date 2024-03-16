@@ -31,7 +31,7 @@ AZA_flights = sortrows(AZA_flights, 'arrival_minute', 'ascend');
 %         % Check if the slot is available
 %         if strcmp(slots.ID(j),0) && slots.Slot_time(j) > AZA_flights.arrival_minute(i)
 %             if abs((slots.Slot_time(j) - AZA_flights.arrival_minute(i))) < 180
-% 
+%
 %                 slots.ID(j) = AZA_flights.ID(i);
 %                 slots.Airline(j) = AZA_flights.Airline(i);
 %                 slots.GroundDelay(j) = (slots.Slot_time(j) - AZA_flights.arrival_minute(i));

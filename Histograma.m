@@ -6,8 +6,8 @@ function [Grafica] = Histograma(Arrivals,AAR,PAAR,HStart,HEnd)
 HStarth = HStart/60;
 HEndh = HEnd/60;
 
-arrival_hour = Arrivals.arrival_minute/60; 
-% 
+arrival_hour = Arrivals.arrival_minute/60;
+%
 figure;
 Grafica = histogram(arrival_hour, 'DisplayStyle', 'bar', 'BinEdges', 0:24);
 hold on;

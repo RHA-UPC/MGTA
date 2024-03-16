@@ -4,7 +4,7 @@ function [HistogramaComputado] = HistogramaComputado(CTA,AAR,PAAR,HStart,HEnd)
 HStarth = HStart/60;
 HEndh = HEnd/60;
 
-arrival_hour = CTA.Slot_time/60; 
+arrival_hour = CTA.Slot_time/60;
 %arrival_hour = CTA{,1}/60;
 
 figure;
