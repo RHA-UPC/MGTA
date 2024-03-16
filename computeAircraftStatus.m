@@ -1,4 +1,4 @@
-function [NotAffected ExemptRadius ExemptInternational ExemptFlying Controlled Exempt] = computeAircraftStatus(Arrivals, Hfile, Hstart, HNoReg, radius)
+function [NotAffected, ExemptRadius, ExemptInternational, ExemptFlying, Controlled, Exempt] = computeAircraftStatus(Arrivals, Hfile, Hstart, HNoReg, radius)
 
 % Initialize output variables
 NotAffected = [];
