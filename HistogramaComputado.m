@@ -25,6 +25,6 @@ ylabel('Number of Arrivals');
 
 % Create a legend
 legend('Arrivals', 'Nominal Capacity','Reduced Capacity');
-%print('HistogramaComputado.png', '-dpng');
+print('HistogramaComputado.png', '-dpng');
 
 end

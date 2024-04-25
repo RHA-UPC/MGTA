@@ -28,7 +28,7 @@ HFileOpt = Hstart - max_index;
 figure;
 
 % print the last point where ground delay is maximum
-fprintf('Optimal Hfile is = %d', Hfile);
+fprintf('Optimal Hfile is = %d.\n', Hfile);
 % reverse the order of TimeFile
 TimeFile = flip(TimeFile);
 
@@ -40,5 +40,6 @@ ylabel('Delay') % label the y-axis
 xline(Hstart, '-.g');
 title('Delay vs. Hfile') % add a title to the plot
 legend('Ground Delay', 'Air Delay') % add a legend to the plot
+print('HfileOpt.png', '-dpng');
 
 end

@@ -25,37 +25,13 @@ end
 AZA_flights = cell2table(AZA_flights,'VariableNames', {'arrival_minute', 'ID', 'Airline'});
 AZA_flights = sortrows(AZA_flights, 'arrival_minute', 'ascend');
 
-% for i = 1:height(AZA_flights)
-%     % Loop through each slot
-%     for j = 1:height(slots)
-%         % Check if the slot is available
-%         if strcmp(slots.ID(j),0) && slots.Slot_time(j) > AZA_flights.arrival_minute(i)
-%             if abs((slots.Slot_time(j) - AZA_flights.arrival_minute(i))) < 180
-%
-%                 slots.ID(j) = AZA_flights.ID(i);
-%                 slots.Airline(j) = AZA_flights.Airline(i);
-%                 slots.GroundDelay(j) = (slots.Slot_time(j) - AZA_flights.arrival_minute(i));
-%                 slots.TotalDelay(j) = slots.AirDelay(j) + slots.GroundDelay(j);
-%             else
-%                 AZA_cancelled = [AZA_cancelled; AZA_flights.arrival_minute(i), AZA_flights.ID(i), AZA_flights.Airline(i)];
-%                 break
-%             end
-%         end
-%         j = j+1;
-%     end
-% end
-% AZA_cancelled = cell2table(AZA_cancelled,'VariableNames', {'arrival_minute'; 'ID'; 'Airline'});
-% AZA_cancelled = sortrows(AZA_cancelled, 'arrival_minute', 'ascend');
-
-%Below it's a Blackbox iteration of the commented code up.
-
 % Loop through each flight
 for i = 1:height(AZA_flights)
     % Loop through each slot
     for j = 1:height(slots)
         % Check if the slot is available
         if strcmp(slots.ID(j),"0") && slots.Slot_time(j) > AZA_flights.arrival_minute(i)
-            if abs((slots.Slot_time(j) - AZA_flights.arrival_minute(i))) < MaxDMin
+            if ((slots.Slot_time(j) - AZA_flights.arrival_minute(i))) < MaxDMin
 
                 slots.ID(j) = AZA_flights.ID(i);
                 slots.Airline(j) = AZA_flights.Airline(i);
@@ -69,6 +45,7 @@ for i = 1:height(AZA_flights)
         end
         j = j+1;
     end
+    i = i+1;
 end
 
 % Convert AZA_cancelled to a table
@@ -104,6 +81,7 @@ for i = 1:height(Exempt)
         end
         j = j+ 1;
     end
+    i = i+1;
 end
 
 for i = 1:height(Controlled)
@@ -123,6 +101,7 @@ for i = 1:height(Controlled)
         end
         j = j+1;
     end
+    i = i+1;
 end
 
 % Find the unique names
@@ -138,9 +117,9 @@ end
 
 % Check if there are repeated names
 if isempty(repeated_names)
-    disp('There are no repeated names in the table');
+    disp('There are no repeated names in the table\n');
 else
-    disp(['There are repeated names in the table: ', repeated_names]);
+    disp(['There are repeated names in the table:\n', repeated_names]);
 end
 
 GroundDelay = cumsum(slots.GroundDelay);

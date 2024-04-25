@@ -20,8 +20,8 @@ end
 TotalDelay = DelG + DelA; % calculate the total delay
 DelayRatio = DelG ./ TotalDelay; % calculate the ratio of ground delay to total delay
 
-% find the index of the minimum delay ratio that is greater than or equal to 0.75
-minDelayRatioIndex = find(DelayRatio >= 0.75, 1, 'first');
+% find the index of the minimum delay ratio that is greater than or equal to 0.9
+minDelayRatioIndex = find(DelayRatio >= 0.9, 1, 'first');
 
 if isempty(minDelayRatioIndex) % if no such index exists, set it to the last index
     minDelayRatioIndex = length(rad);
@@ -38,5 +38,6 @@ ylabel('Delay') % label the y-axis
 xline(RadioOpt, '-.g');
 title('Delay vs. Radius') % add a title to the plot
 legend('Ground Delay', 'Air Delay') % add a legend to the plot
+print('RadioOpt.png', '-dpng');
 
 end
