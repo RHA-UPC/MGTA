@@ -1,4 +1,4 @@
-function [NotAffected, ExemptRadius, ExemptInternational, ExemptFlying, Controlled, Exempt] = computeAircraftStatus(Arrivals, Hfile, Hstart, HNoReg, radius)
+function [NotAffected, Controlled, Exempt, ExemptFlying] = computeAircraftStatus(Arrivals, Hfile, Hstart, HNoReg, radius)
 
 % Initialize output variables
 NotAffected = [];
@@ -46,6 +46,7 @@ for i = 1:size(Arrivals)
 end
 
 Exempt = cell2table(Exempt, 'VariableNames', {'FlightNumber', 'STA', 'STD','Distance', 'International', 'Airline', 'Aircraft'});
+ExemptFlying = cell2table(ExemptFlying, 'VariableNames', {'FlightNumber', 'STA', 'STD','Distance', 'International', 'Airline', 'Aircraft'});
 Controlled = cell2table(Controlled, 'VariableNames', {'FlightNumber', 'STA', 'STD','Distance', 'International', 'Airline', 'Aircraft'});
 NotAffected = cell2table(NotAffected, 'VariableNames', {'FlightNumber', 'STA', 'STD','Distance', 'International', 'Airline', 'Aircraft'});
 

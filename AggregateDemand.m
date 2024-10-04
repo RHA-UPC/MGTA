@@ -10,23 +10,6 @@ for j = 1:height(Arrivals)
     end
 end
 
-%The lines of codes up this comment are a blackbox iteration of the
-%code below.
-%{
-    Arrivals_NUMBER = zeros(1440,1);
-
-    for i = 2:1441
-        %nflight = ismember(Arrivals.arrival_minute,i);
-        for j = 1:height(Arrivals)
-            if (Arrivals.arrival_minute(j) == i-1)
-                Arrivals_NUMBER(i) = Arrivals_NUMBER(i-1) + 1;
-            else
-                Arrivals_NUMBER(i) = Arrivals_NUMBER(i-1);
-            end
-        end
-    end
-%}
-
 % Compute the cumulative sum of the number of planes
 Arrivals_NUMBER = cumsum(Arrivals_NUMBER,1);
 
@@ -72,8 +55,9 @@ xline(HEnd, '-.g');
 xline(HNoReg, '-.b');
 xlabel('Scheduled Arrival Time (minutes)');
 ylabel('Cumulative Sum of Planes');
+legend('Location','northwest');
 legend('Number of planes','Reduced planes','Normal Planes','HStart','HEnd','HNoReg');
-print('AggregateDemand.png', '-dpng');
+%print('AggregateDemand.png', '-dpng');
 
 %Calculates the area of the two functions
 b = integral(y1, HStart, HEnd);

@@ -14,9 +14,9 @@ k = 1;
 j=2;
 
 
-for i = 1 :1:height(slots)
-    for j = 1 : 1 : height(Arrivals)
-        if strcmp(Arrivals.flight_number(j),slots.ID(i))== true
+for i = 1:height(slots)
+    for j = 1:height(Arrivals)
+        if strcmp(Arrivals.flight_number(j),slots.ID(i))
             vector_arrival(k,1)= Arrivals.departure_minute(j);
             vector_arrival(k,2)= slots.GroundDelay(i);
             vector_arrival(k,3)= i;

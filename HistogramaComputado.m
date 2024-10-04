@@ -1,6 +1,5 @@
 function [HistogramaComputado] = HistogramaComputado(CTA,AAR,PAAR,HStart,HEnd)
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+
 HStarth = HStart/60;
 HEndh = HEnd/60;
 
@@ -24,7 +23,8 @@ xlabel('Time (hours)');
 ylabel('Number of Arrivals');
 
 % Create a legend
+legend('Location','northwest')
 legend('Arrivals', 'Nominal Capacity','Reduced Capacity');
-print('HistogramaComputado.png', '-dpng');
+%print('HistogramaComputado.png', '-dpng');
 
 end

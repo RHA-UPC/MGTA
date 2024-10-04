@@ -1,8 +1,5 @@
 function [Grafica] = Histograma(Arrivals,AAR,PAAR,HStart,HEnd)
 
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
-%arrival_hour = hour(datetime(ARRIVAL_sorted.scheduled_arrival, 'InputFormat', 'yyyyMMddHHmmss'));
 HStarth = HStart/60;
 HEndh = HEnd/60;
 
@@ -25,7 +22,8 @@ xlabel('Time (hours)');
 ylabel('Number of Arrivals');
 
 % Create a legend
+legend('Location','northwest')
 legend('Arrivals', 'Nominal Capacity','Reduced Capacity');
-print('Histogram.png', '-dpng');
+%print('Histogram.png', '-dpng');
 
 end

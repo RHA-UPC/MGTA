@@ -55,21 +55,6 @@ ARRIVAL_sorted.pax = round(ARRIVAL_sorted.pax);
 ARRIVAL_sorted.speed = aircraft_types.speed(idx3);
 ARRIVAL_sorted.distance = ARRIVAL_sorted.speed .* ARRIVAL_sorted.time_diff;
 
-
-%{
-if day(ARRIVAL_sorted.scheduled_departure) == 28
-    ARRIVAL_sorted.departure_minute = -((23-hour(ARRIVAL_sorted.scheduled_departure))*60 + (60-minute(ARRIVAL_sorted.scheduled_departure)));
-else
-    ARRIVAL_sorted.departure_minute = hour(ARRIVAL_sorted.scheduled_departure)*60 + minute(ARRIVAL_sorted.scheduled_departure);
-end
-%}
-
-
-%Codigo de arriba corregido por Blackbox crea una columna con la hora de
-%salida en minutos.
-
-% Assuming ARRIVAL_sorted is a table with a 'scheduled_departure' column of datetimes
-
 % Create a new column 'departure_minute' in the table
 ARRIVAL_sorted.departure_minute = zeros(size(ARRIVAL_sorted,1),1);
 
@@ -88,9 +73,45 @@ for i = 1:size(ARRIVAL_sorted,1)
     end
 end
 
-
 %Crea una columna con la hora de llegada en minutos.
 ARRIVAL_sorted.arrival_minute = hour(ARRIVAL_sorted.scheduled_arrival)*60 + minute(ARRIVAL_sorted.scheduled_arrival);
+
+
+%Creamos una distancia media de los aeropuertos de salida así unificamos
+%criterios para GHP. Ya que la distancia realmente es un estimado y es
+%diferente para cada caso. 
+listasalidas = unique(ARRIVAL_sorted.departure_airport);
+
+listmod = cell2table(listasalidas,'VariableName',{'DepartureAirport'});
+Distancias = [];
+dismo = [];
+arrimod = ARRIVAL_sorted;
+k = 1;
+for i = 1:height(listmod)
+    while k <= height(arrimod)
+        if height(arrimod) > 0 && strcmp(listmod.DepartureAirport(i), arrimod.departure_airport(k))
+            dismo = [dismo; arrimod.distance(k)];
+            arrimod(k,:) = [];
+            size(arrimod);
+            k = 0;
+        elseif k == height(arrimod)
+            k = 1;
+            break;
+        end
+        k = k +1;
+    end
+    DMedia = mean(dismo);
+    Distancias = [Distancias; listmod.DepartureAirport(i), DMedia];
+    dismo = [];
+end
+
+DistMedias = cell2table(Distancias,'VariableName',{'DepartureAirport','Distancias'});
+
+[~, idx4] = ismember(ARRIVAL_sorted.departure_airport, DistMedias.DepartureAirport);
+
+ARRIVAL_sorted.distance = DistMedias.Distancias(idx4);
+
+
 
 ARRIVAL = ARRIVAL_sorted;
 
